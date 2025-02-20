@@ -1,14 +1,18 @@
 package br.com.itsolution.fintech.pix_api.service;
 
+import br.com.itsolution.fintech.pix_api.client.AutenticacaoFeignClient;
 import br.com.itsolution.fintech.pix_api.dto.AutenticacaoRequestDTO;
 import br.com.itsolution.fintech.pix_api.dto.AutenticacaoResponseDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
 public class AutenticacaoService {
+
+    @Autowired
+    private AutenticacaoFeignClient autenticacaoFeignClient;
 
     private static final Map<String, String> URLS_BANCOS = new HashMap<>() {{
         put("ITAU", "https://api.itau.com/auth");
@@ -26,15 +30,10 @@ public class AutenticacaoService {
             throw new IllegalArgumentException("Banco não suportado: " + request.getBanco());
         }
 
-        RestTemplate restTemplate = new RestTemplate();
-        Map<String, String> body = new HashMap<>();
-        body.put("client_id", request.getClientId());
-        body.put("client_secret", request.getClientSecret());
-        body.put("grant_type", request.getGrantType());
-        body.put("scope", request.getEscopo());
+        if (autenticacaoFeignClient == null) {
+            throw new IllegalStateException("Feign Client não foi injetado corretamente.");
+        }
 
-        String token = "token_fake_" + request.getBanco().toLowerCase(); // Simulação de resposta
-
-        return new AutenticacaoResponseDTO(request.getBanco(), token);
+        return autenticacaoFeignClient.autenticar(request);
     }
 }
