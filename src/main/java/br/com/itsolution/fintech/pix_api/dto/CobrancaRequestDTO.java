@@ -1,13 +1,26 @@
 package br.com.itsolution.fintech.pix_api.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
+
 public class CobrancaRequestDTO {
 
+    @NotBlank(message = "O banco é obrigatório")
     private String banco;
+
+    @NotBlank(message = "A chave PIX é obrigatória")
     private String chavePix;
+
+    @Positive(message = "O valor deve ser maior que zero")
     private double valor;
+
+    @NotBlank(message = "A descrição é obrigatória")
     private String descricao;
-    private String tipoCobranca; // INSTANTANEA ou VENCIMENTO
-    private String dataVencimento; // Apenas para cobranças com vencimento
+
+    @NotBlank(message = "O tipo de cobrança é obrigatório")
+    @Pattern(regexp = "INSTANTANEA|VENCIMENTO", message = "O tipo de cobrança deve ser INSTANTANEA ou VENCIMENTO")
+    private String tipoCobranca;
 
     public String getBanco() {
         return banco;
@@ -49,11 +62,4 @@ public class CobrancaRequestDTO {
         this.tipoCobranca = tipoCobranca;
     }
 
-    public String getDataVencimento() {
-        return dataVencimento;
-    }
-
-    public void setDataVencimento(String dataVencimento) {
-        this.dataVencimento = dataVencimento;
-    }
 }
