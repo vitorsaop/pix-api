@@ -22,6 +22,7 @@
 
 ### O projeto segue o padrão de Factory Design, onde cada banco tem sua própria implementação de autenticação, e o AuthFactory seleciona automaticamente o serviço correto.
 
+````
 PixApiApplication.java   # Classe principal do Spring Boot
 config/                  # Configurações da API
 controller/              # Controladores REST
@@ -31,11 +32,14 @@ repository/              # Repositórios de dados (se necessário no futuro)
 dto/                     # DTOs para requisições e respostas
 model/                   # Modelos de domínio (se necessário)
 exception/               # Tratamento de erros e exceções
+````
 
 ## Clonar o Repositório
 
+````
 git clone https://github.com/vitorsaop/pix-api.git
 cd pix-api
+````
 
 ## Importando Collection do Insomnia
 
@@ -48,7 +52,7 @@ Para facilitar o uso da API, disponibilizamos uma **collection do Insomnia**.
 4. Escolha o arquivo `docs/insomnia/insomnia_collection.json`.
 5. Agora você pode testar a API diretamente pelo Insomnia! ?
 
-? **Local do arquivo no projeto:**  
+### Local do arquivo no projeto:  
 - `docs/insomnia/insomnia_collection.json`
 
 ## Observações sobre Segurança e TLS
