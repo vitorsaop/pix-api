@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 
-public class CobrancaRequestDTO {
+public class CobrancaRequestDto {
 
     @NotBlank(message = "O banco é obrigatório")
     private String banco;
