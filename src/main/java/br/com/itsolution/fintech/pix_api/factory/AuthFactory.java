@@ -1,7 +1,6 @@
 package br.com.itsolution.fintech.pix_api.factory;
 
-import br.com.itsolution.fintech.pix_api.service.AuthProvider;
-import br.com.itsolution.fintech.pix_api.service.BancoBrasilService;
+import br.com.itsolution.fintech.pix_api.service.*;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -11,11 +10,13 @@ public class AuthFactory {
 
     private final Map<String, AuthProvider> providers;
 
-    public AuthFactory(BancoBrasilService bancoBrasilService) {
+    public AuthFactory(BancoBrasilService bancoBrasilService, BancoItauService bancoItauService) {
         this.providers = Map.of(
-                "BANCO_DO_BRASIL", bancoBrasilService
+                "BANCO_DO_BRASIL", bancoBrasilService,
+                "BANCO_ITAU", bancoItauService
         );
     }
+
 
     public AuthProvider getAuthProvider(String banco) {
         return providers.getOrDefault(banco, null);

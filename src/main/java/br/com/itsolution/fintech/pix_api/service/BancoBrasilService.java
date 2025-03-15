@@ -1,5 +1,7 @@
 package br.com.itsolution.fintech.pix_api.service;
 
+import br.com.itsolution.fintech.pix_api.dto.CobrancaRequestDto;
+import br.com.itsolution.fintech.pix_api.dto.CobrancaVencimentoRequestDto;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -11,7 +13,7 @@ import java.util.Base64;
 import java.util.Map;
 
 @Service
-public class BancoBrasilService implements AuthProvider {
+public class BancoBrasilService implements AuthProvider, CobrancaProvider {
 
     private final RestTemplate restTemplate;
     private final String authUrl;
@@ -58,4 +60,13 @@ public class BancoBrasilService implements AuthProvider {
         }
     }
 
+    @Override
+    public String cobranca(CobrancaRequestDto request) {
+        return "";
+    }
+
+    @Override
+    public String cobrancaVencimento(CobrancaVencimentoRequestDto request) {
+        return "";
+    }
 }
