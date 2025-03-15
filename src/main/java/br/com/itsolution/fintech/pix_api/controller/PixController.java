@@ -1,24 +1,37 @@
 package br.com.itsolution.fintech.pix_api.controller;
 
-import br.com.itsolution.fintech.pix_api.dto.CobrancaRequestDTO;
-import br.com.itsolution.fintech.pix_api.dto.CobrancaResponseDTO;
-import br.com.itsolution.fintech.pix_api.service.PixService;
-import org.springframework.beans.factory.annotation.Autowired;
+import br.com.itsolution.fintech.pix_api.dto.AuthRequestDto;
+import br.com.itsolution.fintech.pix_api.factory.AuthFactory;
+import br.com.itsolution.fintech.pix_api.service.AuthProvider;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/pix")
+@RequestMapping("/api/pix/auth")
 @Validated
 public class PixController {
 
-    @Autowired
-    private PixService pixService;
+    private final AuthFactory authFactory;
 
-    @PostMapping("/cobranca")
-    public ResponseEntity<CobrancaResponseDTO> gerarCobranca(@RequestBody CobrancaRequestDTO request) {
-        CobrancaResponseDTO response = pixService.gerarCobranca(request);
-        return ResponseEntity.ok(response);
+    public PixController(AuthFactory authFactory) {
+        this.authFactory = authFactory;
     }
+
+    @PostMapping("/{banco}")
+    public ResponseEntity<String> obterToken(@RequestBody AuthRequestDto request) {
+        AuthProvider authProvider = authFactory.getAuthProvider(request.getBanco());
+
+        if (authProvider == null) {
+            return ResponseEntity.badRequest().body("Banco não suportado!");
+        }
+
+        String token = authProvider.obterToken(request);
+        if (token == null) {
+            return ResponseEntity.status(500).body("Erro ao obter token!");
+        }
+
+        return ResponseEntity.ok(token);
+    }
+
 }
