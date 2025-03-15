@@ -22,23 +22,29 @@ public class CobrancaRequestDto {
     @Pattern(regexp = "INSTANTANEA|VENCIMENTO", message = "O tipo de cobrança deve ser INSTANTANEA ou VENCIMENTO")
     private String tipoCobranca;
 
+    private String certificado;
+
     public String getBanco() {
         return banco;
     }
 
     public void setBanco(String banco) {
+
         this.banco = banco;
     }
 
     public String getChavePix() {
+
         return chavePix;
     }
 
     public void setChavePix(String chavePix) {
+
         this.chavePix = chavePix;
     }
 
     public double getValor() {
+
         return valor;
     }
 
@@ -47,6 +53,7 @@ public class CobrancaRequestDto {
     }
 
     public String getDescricao() {
+
         return descricao;
     }
 
@@ -59,7 +66,17 @@ public class CobrancaRequestDto {
     }
 
     public void setTipoCobranca(String tipoCobranca) {
+
         this.tipoCobranca = tipoCobranca;
     }
+
+    public String getCertificado() {
+        return certificado;
+    }
+
+    public void setCertificado(String certificado) {
+        this.certificado = certificado;
+    }
+
 
 }
