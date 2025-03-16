@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "9f924a38-0d19-47ea-80cb-1436476bf9e2",
+		"name": "PIX-API (ItSolution)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5852114",
+		"_collection_link": "https://universal-meadow-629365.postman.co/workspace/My-Workspace~19354ea7-6e04-43ce-8f7f-c04f756dc979/collection/5852114-9f924a38-0d19-47ea-80cb-1436476bf9e2?action=share&source=collection_link&creator=5852114"
+	},
+	"item": [
+		{
+			"name": "Banco do Brasil",
+			"item": [
+				{
+					"name": "Autenticação",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"banco\": \"BANCO_DO_BRASIL\",\n  \"clientId\": \"{{client_id_bb}}\",\n  \"clientSecret\": \"{{client_secret_bb}}\",\n  \"certificado\": \"\",\n  \"grantType\": \"client_credentials\",\n  \"escopo\": \"cob.write cob.read pix.read cobranca.registro-boletos\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{server}}/api/pix/auth",
+							"protocol": "http",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"pix",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Banco Santander",
+			"item": [
+				{
+					"name": "Autenticação",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"banco\": \"BANCO_SANTANDER\",\n  \"clientId\": \"{{client_id_santander}}\",\n  \"clientSecret\": \"{{client_secret_santander}}\",\n  \"certificado\": \"\",\n  \"grantType\": \"client_credentials\",\n  \"escopo\": \"cob.write cob.read pix.read\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{server}}/api/pix/auth",
+							"protocol": "http",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"pix",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
