@@ -10,10 +10,11 @@ public class AuthFactory {
 
     private final Map<String, AuthProvider> providers;
 
-    public AuthFactory(BancoBrasilService bancoBrasilService, BancoItauService bancoItauService) {
+    public AuthFactory(BancoBrasilService bancoBrasilService, BancoItauService bancoItauService, BancoSantanderService bancoSantanderService) {
         this.providers = Map.of(
                 "BANCO_DO_BRASIL", bancoBrasilService,
-                "BANCO_ITAU", bancoItauService
+                "BANCO_ITAU", bancoItauService,
+                "BANCO_SANTANDER", bancoSantanderService
         );
     }
 
