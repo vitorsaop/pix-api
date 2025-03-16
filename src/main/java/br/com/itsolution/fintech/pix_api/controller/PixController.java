@@ -8,7 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/pix/auth")
+@RequestMapping("/api/pix")
 @Validated
 public class PixController {
 
@@ -18,7 +18,7 @@ public class PixController {
         this.authFactory = authFactory;
     }
 
-    @PostMapping("/{banco}")
+    @PostMapping("/{auth}")
     public ResponseEntity<String> obterToken(@RequestBody AuthRequestDto request) {
         AuthProvider authProvider = authFactory.getAuthProvider(request.getBanco());
 
