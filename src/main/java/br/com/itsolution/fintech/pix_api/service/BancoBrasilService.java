@@ -1,6 +1,7 @@
 package br.com.itsolution.fintech.pix_api.service;
 
 import br.com.itsolution.fintech.pix_api.dto.CobrancaRequestDto;
+import br.com.itsolution.fintech.pix_api.dto.CobrancaResponseDto;
 import br.com.itsolution.fintech.pix_api.dto.CobrancaVencimentoRequestDto;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Value;
@@ -61,8 +62,8 @@ public class BancoBrasilService implements AuthProvider, CobrancaProvider {
     }
 
     @Override
-    public String cobranca(CobrancaRequestDto request) {
-        return "";
+    public CobrancaResponseDto cobranca(CobrancaRequestDto request) {
+        return null;
     }
 
     @Override
