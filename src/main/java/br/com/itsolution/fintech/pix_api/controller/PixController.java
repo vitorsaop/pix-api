@@ -1,8 +1,13 @@
 package br.com.itsolution.fintech.pix_api.controller;
 
 import br.com.itsolution.fintech.pix_api.dto.AuthRequestDto;
+import br.com.itsolution.fintech.pix_api.dto.CobrancaRequestDto;
+import br.com.itsolution.fintech.pix_api.dto.CobrancaResponseDto;
 import br.com.itsolution.fintech.pix_api.factory.AuthFactory;
+import br.com.itsolution.fintech.pix_api.factory.CobrancaFactory;
 import br.com.itsolution.fintech.pix_api.service.AuthProvider;
+import br.com.itsolution.fintech.pix_api.service.CobrancaProvider;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -13,12 +18,14 @@ import org.springframework.web.bind.annotation.*;
 public class PixController {
 
     private final AuthFactory authFactory;
+    private final CobrancaFactory cobrancaFactory;
 
-    public PixController(AuthFactory authFactory) {
-        this.authFactory = authFactory;
+    public PixController(AuthFactory authFactory, CobrancaFactory cobrancaFactory) {
+        this.authFactory     = authFactory;
+        this.cobrancaFactory = cobrancaFactory;
     }
 
-    @PostMapping("/{auth}")
+    @PostMapping("/auth")
     public ResponseEntity<String> obterToken(@RequestBody AuthRequestDto request) {
         AuthProvider authProvider = authFactory.getAuthProvider(request.getBanco());
 
@@ -32,6 +39,22 @@ public class PixController {
         }
 
         return ResponseEntity.ok(token);
+    }
+
+    /**
+     * 🔹 Cria uma cobrança PIX para um banco específico.
+     */
+    @PostMapping("/cobranca")
+    public ResponseEntity<CobrancaResponseDto> criarCobranca(@RequestBody @Valid CobrancaRequestDto request) {
+        CobrancaProvider cobrancaProvider = cobrancaFactory.getCobrancaProvider(request.getBanco());
+
+        if (cobrancaProvider == null) {
+            return ResponseEntity.badRequest().body(CobrancaResponseDto.erro("Banco não suportado para cobrança!"));
+        }
+
+        CobrancaResponseDto cobrancaResponse = cobrancaProvider.cobranca(request);
+
+        return ResponseEntity.ok(cobrancaResponse);
     }
 
 }

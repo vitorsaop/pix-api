@@ -8,19 +8,14 @@ import java.util.Map;
 @Component
 public class AuthFactory {
 
-    private final Map<String, AuthProvider> providers;
+    private final BancoFactory bancoFactory;
 
-    public AuthFactory(BancoBrasilService bancoBrasilService, BancoItauService bancoItauService, BancoSantanderService bancoSantanderService) {
-        this.providers = Map.of(
-                "BANCO_DO_BRASIL", bancoBrasilService,
-                "BANCO_ITAU", bancoItauService,
-                "BANCO_SANTANDER", bancoSantanderService
-        );
+    public AuthFactory(BancoFactory bancoFactory) {
+        this.bancoFactory = bancoFactory;
     }
 
-
     public AuthProvider getAuthProvider(String banco) {
-        return providers.getOrDefault(banco, null);
+        return bancoFactory.getAuthProvider(banco);
     }
 
 }

@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 
+
 public class CobrancaRequestDto {
 
     @NotBlank(message = "O banco é obrigatório")
@@ -24,27 +25,26 @@ public class CobrancaRequestDto {
 
     private String certificado;
 
+    @NotBlank(message = "O token de autenticação é obrigatório")
+    private String token;
+
     public String getBanco() {
         return banco;
     }
 
     public void setBanco(String banco) {
-
         this.banco = banco;
     }
 
     public String getChavePix() {
-
         return chavePix;
     }
 
     public void setChavePix(String chavePix) {
-
         this.chavePix = chavePix;
     }
 
     public double getValor() {
-
         return valor;
     }
 
@@ -53,7 +53,6 @@ public class CobrancaRequestDto {
     }
 
     public String getDescricao() {
-
         return descricao;
     }
 
@@ -66,7 +65,6 @@ public class CobrancaRequestDto {
     }
 
     public void setTipoCobranca(String tipoCobranca) {
-
         this.tipoCobranca = tipoCobranca;
     }
 
@@ -78,5 +76,12 @@ public class CobrancaRequestDto {
         this.certificado = certificado;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
 }
