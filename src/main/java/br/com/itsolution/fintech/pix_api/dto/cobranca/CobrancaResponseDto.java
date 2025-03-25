@@ -1,4 +1,4 @@
-package br.com.itsolution.fintech.pix_api.dto;
+package br.com.itsolution.fintech.pix_api.dto.cobranca;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Collections;

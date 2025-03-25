@@ -1,8 +1,8 @@
 package br.com.itsolution.fintech.pix_api.controller;
 
-import br.com.itsolution.fintech.pix_api.dto.AuthRequestDto;
-import br.com.itsolution.fintech.pix_api.dto.CobrancaRequestDto;
-import br.com.itsolution.fintech.pix_api.dto.CobrancaResponseDto;
+import br.com.itsolution.fintech.pix_api.dto.autenticacao.AuthRequestDto;
+import br.com.itsolution.fintech.pix_api.dto.cobranca.CobrancaRequestDto;
+import br.com.itsolution.fintech.pix_api.dto.cobranca.CobrancaResponseDto;
 import br.com.itsolution.fintech.pix_api.factory.AuthFactory;
 import br.com.itsolution.fintech.pix_api.factory.CobrancaFactory;
 import br.com.itsolution.fintech.pix_api.service.AuthProvider;

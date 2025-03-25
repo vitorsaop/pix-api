@@ -1,4 +1,4 @@
-package br.com.itsolution.fintech.pix_api.dto;
+package br.com.itsolution.fintech.pix_api.dto.autenticacao;
 
 public class AuthResponseDto {
 

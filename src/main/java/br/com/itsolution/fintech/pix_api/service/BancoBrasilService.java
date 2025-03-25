@@ -1,13 +1,13 @@
 package br.com.itsolution.fintech.pix_api.service;
 
-import br.com.itsolution.fintech.pix_api.dto.CobrancaRequestDto;
-import br.com.itsolution.fintech.pix_api.dto.CobrancaResponseDto;
-import br.com.itsolution.fintech.pix_api.dto.CobrancaVencimentoRequestDto;
+import br.com.itsolution.fintech.pix_api.dto.cobranca.CobrancaRequestDto;
+import br.com.itsolution.fintech.pix_api.dto.cobranca.CobrancaResponseDto;
+import br.com.itsolution.fintech.pix_api.dto.cobranca.CobrancaVencimentoRequestDto;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
-import br.com.itsolution.fintech.pix_api.dto.AuthRequestDto;
+import br.com.itsolution.fintech.pix_api.dto.autenticacao.AuthRequestDto;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;

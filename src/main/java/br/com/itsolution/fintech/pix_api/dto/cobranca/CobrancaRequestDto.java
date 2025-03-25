@@ -1,11 +1,12 @@
-package br.com.itsolution.fintech.pix_api.dto;
+package br.com.itsolution.fintech.pix_api.dto.cobranca;
 
+import br.com.itsolution.fintech.pix_api.dto.bilhetagem.Bilhetavel;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 
 
-public class CobrancaRequestDto {
+public class CobrancaRequestDto implements Bilhetavel {
 
     @NotBlank(message = "O banco é obrigatório")
     private String banco;
@@ -27,6 +28,9 @@ public class CobrancaRequestDto {
 
     @NotBlank(message = "O token de autenticação é obrigatório")
     private String token;
+
+    @NotBlank(message = "Necessário informar o cnpj da empresa emissora da cobrança")
+    private String cnpj;
 
     public String getBanco() {
         return banco;
@@ -84,4 +88,20 @@ public class CobrancaRequestDto {
         this.token = token;
     }
 
+    public void setCnpj(String cnpj) {this.cnpj = cnpj; }
+
+    @Override
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    @Override
+    public String getAppId() {
+        return "pix-api";
+    }
+
+    @Override
+    public String getEndpoint() {
+        return "/cobranca";
+    }
 }

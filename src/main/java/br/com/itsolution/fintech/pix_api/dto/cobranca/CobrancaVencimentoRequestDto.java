@@ -1,4 +1,4 @@
-package br.com.itsolution.fintech.pix_api.dto;
+package br.com.itsolution.fintech.pix_api.dto.cobranca;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
